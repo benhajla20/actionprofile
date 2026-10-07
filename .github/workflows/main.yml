@@ -1,16 +1,17 @@
-name: Build WF
-on: 
+on:
   push:
-   branches: 
+    branches:
       - main
   pull_request:
-    branches: 
+    branches:
       - main
   workflow_dispatch:
-    schedule:
-      - cron: '10 14 * * 1-5' # nightly run at 2 AM UTC
-  permissions:
-    contents: read
+  schedule:
+    - cron: '10 14 * * 1-5' # du lundi au vendredi à 14h10 UTC
+
+permissions:
+  contents: read
+
     
 
 jobs:
