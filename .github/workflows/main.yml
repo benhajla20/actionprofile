@@ -1,11 +1,14 @@
 name: Build WF
 on: 
-#  push:
-#    branches: 
-#      - main
+  push:
+   branches: 
+      - main
   pull_request:
     branches: 
       - main
+  workflow_dispatch:
+    schedules:
+      - cron: '10 14 * * 1-5' # nightly run at 2 AM UTC
 
 jobs:
   Build:
