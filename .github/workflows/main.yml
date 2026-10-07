@@ -29,7 +29,7 @@ jobs:
         with:
           name: vprofile-app
           path: target/*.jar
-      -name: Notify if build fails
+      - name: Notify if build fails
         if: failure()
         run: echo "Build failed! Please check the logs."
 
