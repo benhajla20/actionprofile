@@ -7,8 +7,11 @@ on:
     branches: 
       - main
   workflow_dispatch:
-    schedules:
+    schedule:
       - cron: '10 14 * * 1-5' # nightly run at 2 AM UTC
+  permissions:
+    contents: read
+    
 
 jobs:
   Build:
@@ -21,6 +24,14 @@ jobs:
 
       - name: Maven Build
         run: mvn install
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: vprofile-app
+          path: target/*.jar
+      -name: Notify if build fails
+        if: failure()
+        run: echo "Build failed! Please check the logs."
 
 
   Testing:
